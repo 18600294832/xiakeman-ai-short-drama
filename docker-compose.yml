@@ -7,10 +7,17 @@ services:
     ports:
       - "8022:8022"
       - "8030:8030"
+      - "1455:8030"
     environment:
       BFF_PORT: "8030"
       CORS_ORIGIN: "http://localhost:8022"
       REWRITE_LOCALHOST_FOR_DOCKER: "true"
       DOCKER_HOST_GATEWAY: "host.docker.internal"
+      LOCAL_STORE_DIR: "/data/xiakeman"
+      RENDER_WORK_DIR: "/data/xiakeman/render-jobs"
+      STORYBOARD_SHOT15_CONCURRENCY: "8"
+      STORYBOARD_SHOT15_REASONING: "high"
+    volumes:
+      - ./local-data:/data/xiakeman
     extra_hosts:
       - "host.docker.internal:host-gateway"
