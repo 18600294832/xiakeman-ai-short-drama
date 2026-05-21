@@ -39,7 +39,344 @@
       })();
     </script>
     <script defer src="./openai-oauth-bridge.js?v=20260520"></script>
-    <script type="module" crossorigin src="./assets/index-DZb1o-TM.js?v=shot15-keyframe-retry-v4-20260520"></script>
+    <style>
+      .xkm-home {
+        min-height: calc(100vh - 72px);
+        padding: 28px 24px 44px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.92), rgba(248,250,252,.98)),
+          linear-gradient(135deg, rgba(255,122,79,.05), rgba(20,184,166,.04));
+      }
+      .dark .xkm-home {
+        background:
+          linear-gradient(180deg, rgba(2,6,23,.94), rgba(15,23,42,.98)),
+          linear-gradient(135deg, rgba(255,122,79,.08), rgba(45,212,191,.05));
+      }
+      .xkm-home-shell {
+        width: min(980px, 100%);
+        margin: 0 auto;
+      }
+      .xkm-home-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 30px;
+        padding: 0 12px;
+        border: 1px solid rgba(148,163,184,.32);
+        border-radius: 999px;
+        background: rgba(255,255,255,.68);
+        color: rgb(100,116,139);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+      .dark .xkm-home-kicker {
+        background: rgba(15,23,42,.62);
+        color: rgb(203,213,225);
+      }
+      .xkm-home-title {
+        margin-top: 12px;
+        max-width: 760px;
+        font-size: 34px;
+        line-height: 1.16;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+      .xkm-home-subtitle {
+        margin-top: 10px;
+        max-width: 660px;
+        color: rgb(100,116,139);
+        font-size: 15px;
+        line-height: 1.8;
+      }
+      .dark .xkm-home-subtitle {
+        color: rgb(148,163,184);
+      }
+      .xkm-project-module {
+        margin-top: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(148,163,184,.22);
+        border-radius: 24px;
+        background: rgba(255,255,255,.82);
+        box-shadow: 0 28px 70px -44px rgba(15,23,42,.55);
+        backdrop-filter: blur(18px);
+      }
+      .dark .xkm-project-module {
+        border-color: rgba(255,255,255,.10);
+        background: rgba(15,23,42,.72);
+        box-shadow: 0 28px 70px -44px rgba(0,0,0,.9);
+      }
+      .xkm-project-module-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 20px;
+        border-bottom: 1px solid rgba(148,163,184,.18);
+      }
+      .xkm-project-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+        gap: 14px;
+        padding: 18px;
+      }
+      .xkm-project-card {
+        display: grid;
+        grid-template-columns: 168px minmax(0, 1fr);
+        min-height: 218px;
+        overflow: hidden;
+        border: 1px solid rgba(148,163,184,.18);
+        border-radius: 20px;
+        background: rgba(255,255,255,.72);
+      }
+      .dark .xkm-project-card {
+        border-color: rgba(255,255,255,.10);
+        background: rgba(255,255,255,.04);
+      }
+      .xkm-project-cover {
+        position: relative;
+        height: 100%;
+        min-height: 218px;
+        overflow: hidden;
+        background: #0f172a;
+      }
+      .xkm-project-cover img {
+        width: 100%;
+        height: 100%;
+        min-height: 218px;
+        object-fit: cover;
+        display: block;
+      }
+      .xkm-project-cover-fallback {
+        width: 100%;
+        height: 100%;
+        min-height: 218px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          linear-gradient(135deg, rgba(15,23,42,1), rgba(30,41,59,.92)),
+          linear-gradient(45deg, rgba(255,122,79,.22), rgba(20,184,166,.16));
+      }
+      .xkm-project-cover-fallback-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        color: rgba(255,255,255,.88);
+      }
+      .xkm-project-info {
+        display: flex;
+        min-height: 218px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .xkm-project-name {
+        font-size: 24px;
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+      .xkm-project-meta {
+        margin-top: 14px;
+        color: rgb(100,116,139);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .dark .xkm-project-meta {
+        color: rgb(148,163,184);
+      }
+      .xkm-project-stats {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .xkm-project-stat {
+        border: 1px solid rgba(148,163,184,.22);
+        border-radius: 14px;
+        padding: 10px;
+        background: rgba(248,250,252,.7);
+      }
+      .dark .xkm-project-stat {
+        border-color: rgba(255,255,255,.10);
+        background: rgba(255,255,255,.05);
+      }
+      .xkm-project-stat strong {
+        display: block;
+        font-size: 18px;
+        line-height: 1;
+      }
+      .xkm-project-stat span {
+        margin-top: 7px;
+        display: block;
+        color: rgb(100,116,139);
+        font-size: 12px;
+      }
+      .dark .xkm-project-stat span {
+        color: rgb(148,163,184);
+      }
+      .xkm-empty-project {
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 54px 24px;
+        text-align: center;
+      }
+      .xkm-cover-picker {
+        position: relative;
+        min-height: 180px;
+        overflow: hidden;
+        border: 1px dashed rgba(148,163,184,.55);
+        border-radius: 22px;
+        background: rgba(248,250,252,.78);
+      }
+      .dark .xkm-cover-picker {
+        background: rgba(15,23,42,.65);
+        border-color: rgba(255,255,255,.18);
+      }
+      .xkm-cover-picker img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      @media (max-width: 820px) {
+        .xkm-home {
+          padding: 26px 16px 42px;
+        }
+        .xkm-home-title {
+          font-size: 30px;
+        }
+        .xkm-project-name {
+          font-size: 26px;
+        }
+        .xkm-project-list {
+          grid-template-columns: 1fr;
+          padding: 14px;
+        }
+        .xkm-project-card {
+          grid-template-columns: 1fr;
+        }
+        .xkm-project-cover,
+        .xkm-project-cover img,
+        .xkm-project-cover-fallback {
+          height: 190px;
+          min-height: 190px;
+        }
+        .xkm-project-info {
+          min-height: auto;
+          padding: 18px;
+        }
+        .xkm-project-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script type="module">
+      const XKM_STATE_DB = "drama-app-state-db";
+      const XKM_STATE_DB_VERSION = 1;
+      const XKM_STATE_STORE = "state-snapshots";
+      const XKM_META_STORE = "metadata";
+      const XKM_PRIMARY_KEY = "primary";
+      const XKM_META_KEY = "primary-state";
+
+      const xkmLocalStoreUrl = (path) =>
+        window.location.protocol === "file:"
+          ? `http://127.0.0.1:8022${path}`
+          : path;
+
+      const xkmOpenStateDb = () =>
+        new Promise((resolve, reject) => {
+          const request = indexedDB.open(XKM_STATE_DB, XKM_STATE_DB_VERSION);
+          request.onupgradeneeded = () => {
+            const db = request.result;
+            if (!db.objectStoreNames.contains(XKM_STATE_STORE)) {
+              db.createObjectStore(XKM_STATE_STORE, { keyPath: "key" });
+            }
+            if (!db.objectStoreNames.contains(XKM_META_STORE)) {
+              db.createObjectStore(XKM_META_STORE, { keyPath: "key" });
+            }
+          };
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+
+      const xkmGetPrimarySnapshot = (db) =>
+        new Promise((resolve, reject) => {
+          const tx = db.transaction(XKM_STATE_STORE, "readonly");
+          const request = tx.objectStore(XKM_STATE_STORE).get(XKM_PRIMARY_KEY);
+          request.onsuccess = () => resolve(request.result || null);
+          request.onerror = () => reject(request.error);
+          tx.onerror = () => reject(tx.error);
+        });
+
+      const xkmWriteDiskSnapshot = async (snapshot) => {
+        if (!snapshot || !snapshot.state) return;
+        const db = await xkmOpenStateDb();
+        try {
+          const current = await xkmGetPrimarySnapshot(db).catch(() => null);
+          if (
+            current &&
+            Number(current.saveRevision || 0) > Number(snapshot.saveRevision || 0)
+          ) {
+            return;
+          }
+          await new Promise((resolve, reject) => {
+            const tx = db.transaction([XKM_STATE_STORE, XKM_META_STORE], "readwrite");
+            const meta = {
+              key: XKM_META_KEY,
+              value: {
+                primaryStore: "disk",
+                cacheStore: "indexeddb",
+                lastSaveRevision: Number(snapshot.saveRevision || 0),
+                lastSavedAt: snapshot.updatedAt || new Date().toISOString(),
+                migratedAt: new Date().toISOString()
+              }
+            };
+            tx.objectStore(XKM_STATE_STORE).put(snapshot);
+            tx.objectStore(XKM_META_STORE).put(meta);
+            tx.oncomplete = () => {
+              try {
+                localStorage.setItem(
+                  "drama-app-state-meta-v1",
+                  JSON.stringify(meta.value)
+                );
+              } catch {}
+              resolve();
+            };
+            tx.onerror = () => reject(tx.error);
+            tx.onabort = () => reject(tx.error);
+          });
+        } finally {
+          db.close();
+        }
+      };
+
+      const xkmRestoreFromDiskBeforeBoot = async () => {
+        if (!("indexedDB" in window)) return;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 1500);
+        try {
+          const response = await fetch(xkmLocalStoreUrl("/api/local-store/state"), {
+            cache: "no-store",
+            signal: controller.signal
+          });
+          if (!response.ok) return;
+          await xkmWriteDiskSnapshot(await response.json());
+        } catch {
+        } finally {
+          clearTimeout(timeout);
+        }
+      };
+
+      await xkmRestoreFromDiskBeforeBoot();
+      await import("./assets/index-DZb1o-TM.js");
+      await import("./xkm-project-runtime.js?v=20260521i");
+    </script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-react-FitHiPMq.js">
     <link rel="modulepreload" crossorigin href="./assets/vendor-app-BhRZn_c7.js">
     <link rel="modulepreload" crossorigin href="./assets/vendor-misc-CKXVp8N4.js">
